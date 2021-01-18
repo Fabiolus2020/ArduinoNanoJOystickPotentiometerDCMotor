@@ -1,6 +1,10 @@
 # ArduinoNanoJOystickPotentiometerDCMotor
 Controlling 2 dc motor using a joystick for direction and potentiometer for speed control
 
+
+Youtube:
+https://youtu.be/1Xa3nYpA-zU
+
 project#9
 
 1 x Arduino Nano
