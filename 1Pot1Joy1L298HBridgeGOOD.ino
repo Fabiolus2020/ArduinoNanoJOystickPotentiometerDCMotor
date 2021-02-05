@@ -1,18 +1,20 @@
+//The_fabiolous@hotmail.com
+//December 2020
 // Motor A
 
-int enA = 9;
-int in1 = 8;
-int in2 = 7;
+int enA = 10;
+int in1 = 4;
+int in2 = 5;
 
 // Motor B
 
 int enB = 3;
-int in3 = 5;
-int in4 = 4;
+int in3 = 6;
+int in4 = 7;
 
 // Speed control potentiometers
 
-int SpeedControl = A2;  
+int SpeedControl = A2;
 
 
 // Joystick Input
@@ -50,13 +52,13 @@ void setup()
   // Motor A
 
   digitalWrite(enA, LOW);
-  digitalWrite(in1, HIGH);
+  digitalWrite(in1, LOW);
   digitalWrite(in2, LOW);
 
   // Motor B
 
   digitalWrite(enB, LOW);
-  digitalWrite(in3, HIGH);
+  digitalWrite(in3, LOW);
   digitalWrite(in4, LOW);
 
 }
@@ -68,7 +70,7 @@ void loop() {
 
   joyposVert = analogRead(joyVert);
   joyposHorz = analogRead(joyHorz);
-  MotorSpeed1 = analogRead(SpeedControl); 
+  MotorSpeed1 = analogRead(SpeedControl);
   MotorSpeed2 = analogRead(SpeedControl);
 
   if (joyposHorz < 460)
@@ -85,22 +87,12 @@ void loop() {
     digitalWrite(in3, HIGH);
     digitalWrite(in4, LOW);
 
-      // Read the values from the potentiometers
-    
+    // Read the values from the potentiometers
 
 
-    //Determine Motor Speeds
-    joyposHorz = joyposHorz - 460; // This produces a negative number
-    joyposHorz = joyposHorz * -1;  // Make the number positive
+    MotorSpeed1 = map(MotorSpeed1, 0, 1023, 0, 255);
+    MotorSpeed2 = map(MotorSpeed2, 0, 1023, 0, 255);
 
-  MotorSpeed1 = map(MotorSpeed1, 0, 1023, 0, 255);
-  MotorSpeed2 = map(MotorSpeed2, 0, 1023, 0, 255);  
-
-     joyposHorz = map(joyposHorz, 460, 1023, 0, 255);
-
-
-       if (MotorSpeed1 > 255)MotorSpeed1 = 255;
-    if (MotorSpeed2 < 0)MotorSpeed2 = 0;
   }
 
   else if (joyposHorz > 564)
@@ -116,30 +108,8 @@ void loop() {
     digitalWrite(in3, LOW);
     digitalWrite(in4, HIGH);
 
-
-
-    /////////////
-    //Determine Motor Speeds
-
-    joyposHorz = joyposHorz - 564; // This produces a negative number
-    joyposHorz = joyposHorz * 1;  // Make the number positive
-
-  MotorSpeed1 = map(MotorSpeed1, 0, 1023, 0, 255);
-  MotorSpeed2 = map(MotorSpeed2, 0, 1023, 0, 255);
-
-
-    // Map the number to a value of 255 maximum
-
-   // joyposHorz = map(joyposHorz, 564, 1023, 0, 255);
-
-
-  //  MotorSpeed1 = MotorSpeed1 + joyposHorz;
-  //  MotorSpeed2 = MotorSpeed2 - joyposHorz;
-
-    // Don't exceed range of 0-255 for motor speeds
-
-    if (MotorSpeed1 > 255)MotorSpeed1 = 255;
-    if (MotorSpeed2 < 0)MotorSpeed2 = 0;
+    MotorSpeed1 = map(MotorSpeed1, 0, 1023, 0, 255);
+    MotorSpeed2 = map(MotorSpeed2, 0, 1023, 0, 255);
 
   }
 
@@ -159,8 +129,8 @@ void loop() {
 
     //Determine Motor Speeds
 
-  MotorSpeed1 = map(MotorSpeed1, 0, 1023, 0, 255);
-  MotorSpeed2 = map(MotorSpeed2, 0, 1023, 0, 255);
+    MotorSpeed1 = map(MotorSpeed1, 0, 1023, 0, 255);
+    MotorSpeed2 = map(MotorSpeed2, 0, 1023, 0, 255);
 
   }
   else if (joyposVert < 460)
@@ -177,15 +147,9 @@ void loop() {
     digitalWrite(in3, LOW);
     digitalWrite(in4, HIGH);
 
-    //Determine Motor Speeds
 
-    // As we are going backwards we need to reverse readings
-
-    joyposVert = joyposVert - 460; // This produces a negative number
-    joyposVert = joyposVert * -1;  // Make the number positive
-
-  MotorSpeed1 = map(MotorSpeed1, 0, 1023, 0, 255);
-  MotorSpeed2 = map(MotorSpeed2, 0, 1023, 0, 255);
+    MotorSpeed1 = map(MotorSpeed1, 0, 1023, 0, 255);
+    MotorSpeed2 = map(MotorSpeed2, 0, 1023, 0, 255);
 
   }
 
